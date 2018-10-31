@@ -1,0 +1,19 @@
+{
+  "name": "supportbank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "SupportBank.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DamienWheatley/SupportBank.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DamienWheatley/SupportBank/issues"
+  },
+  "homepage": "https://github.com/DamienWheatley/SupportBank#readme"
+}
