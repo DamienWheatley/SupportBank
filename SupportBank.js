@@ -1,22 +1,35 @@
 const readline = require('readline-sync');
+const moment = require('moment');
+const fs = require('fs');
+const parse = require('csv-parse/lib/sync');
+const assert = require('assert');
 
-let CSV = $.get('C:\October Cohort\Training\SupportBank\Transactions2014.csv');
+const csvFilePath='Transactions2014.csv';
 
-let WhoOwesWho = class {
+let fileRead = fs.readFileSync(csvFilePath, {encoding:'utf-8'});
 
-    constructor(from,to) {
+const transactions = parse(fileRead, {
+  columns: true,
+  skip_empty_lines: true
+})
 
-        this.from = from;
-        this.to = to;
-    }
+// class Account {
+//     constructor (name)
+// }
+
+// console.log(transactions);
+
+let accounts = []
+
+let i;
+  
+for (i = 0; i <= transactions.length - 1; i++){
+  if (!accounts.includes(transactions[i].From)){
+      accounts.push(transactions[i].From)
+  }
+  if (!accounts.includes(transactions[i].To)){
+      accounts.push(transactions[i].To)
+  }
 }
 
-let AmountOwed = class {
-
-    constructor(amount){
-        
-        this.amount = amount
-    }
-}
-
-console.log(CSV)
+console.log(accounts)
