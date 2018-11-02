@@ -23,17 +23,6 @@ class Account {
      }
 }
 
-class AllTransactions {
-    constructor (date,NameFrom,Action,NameTo,AmountPaid,Narrative){
-      this.date = date;
-      this.NameFrom = NameFrom;
-      this.Action = Action;
-      this.NameTo = NameTo;
-      this.AmountPaid = AmountPaid;
-      this.Narrative = Narrative;
-    }
-}
-
 let accountNames = []; //creates empty array "accountNames"
 let accountBalance = [];
 
@@ -74,17 +63,19 @@ let newName, newBalance;
 
 for (i = 0; i <= accountNames.length - 1; i++) {
   newName = accountNames[i]; //assigns the selected index to "newName" variable
-  newBalance = `£` + accountBalance[i].toFixed(2);
+  newBalance = `£` + accountBalance[i].toFixed(2); // --- try to split string and put the pound sign after the minus ************
   let newAccount = new Account(newName,newBalance); //creates an account object and assigns it to the "newAccount" variable
   accounts.push(newAccount); //pushes the account object (assigned to "newAccount") to the array "newName"
 }
 
 console.log("===========================================");
-console.log("Please enter 'List All' to view all accounts.")
-const ShowAllAccounts = readline.prompt()
+console.log("Please enter 'List All' to view all accounts.");
+const ShowAllAccounts = readline.prompt();
 
 if (ShowAllAccounts == 'List All') {
-  console.log(accounts);
+  for(let i = 0; i <accounts.length; i++) {
+    console.log(accounts[i].Name + " has " + accounts[i].Amount);
+  }
 } else {
-  console.log(`Sorry, we didn't quite catch that - please try again and enter 'All'`);
+  console.log(`Sorry, I didn't quite catch that - please try again and enter 'List All'`);
 }
