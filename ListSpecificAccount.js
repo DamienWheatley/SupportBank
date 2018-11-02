@@ -62,7 +62,9 @@ function DisplayUser(usersName) {
  }
 }
 
-console.log("===========================================");
-console.log("Please enter 'List [your account name]' to view all transactions.");
-const showTransactions = readline.prompt()
-DisplayUser(showTransactions);
+exports.ListSpecific = function(showTransactions){
+  // console.log("===========================================");
+  // console.log("Please enter 'List [your account name]' to view all transactions.");
+  // const showTransactions = readline.prompt();
+  DisplayUser(showTransactions);
+}

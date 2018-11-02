@@ -3,6 +3,7 @@ const moment = require('moment');
 const fs = require('fs');
 const parse = require('csv-parse/lib/sync');
 const assert = require('assert');
+const ListSpecificAccount = require('./ListSpecificAccount')
 
 const csvFilePath='Transactions2014.csv';
 //Reads csv file
@@ -68,14 +69,31 @@ for (i = 0; i <= accountNames.length - 1; i++) {
   accounts.push(newAccount); //pushes the account object (assigned to "newAccount") to the array "newName"
 }
 
-console.log("===========================================");
-console.log("Please enter 'List All' to view all accounts.");
-const ShowAllAccounts = readline.prompt();
-
-if (ShowAllAccounts == 'List All') {
-  for(let i = 0; i <accounts.length; i++) {
-    console.log(accounts[i].Name + " has " + accounts[i].Amount);
+function DisplayAllAccounts(usersName) {
+  
+  if (usersName == 'List All') {
+    for(let i = 0; i <accounts.length; i++) {
+      console.log(accounts[i].Name + " has " + accounts[i].Amount);
+    }
   }
+}
+
+console.log("===========================================");
+console.log("Please enter 'List All' to view all accounts, or enter 'List Account' to view a specific account's transactions.");
+const UserSelects = readline.prompt();
+if (UserSelects === 'List All'){  
+  DisplayAllAccounts(UserSelects);
+} else if (UserSelects === 'List Account') {
+  console.log("===========================================");
+  console.log("Please enter your account name to view all transactions.");
+  const showTransactions = readline.prompt();
+  console.log("===========================================")
+    for(let i = 0; i <accounts.length; i++) {
+      if(showTransactions.includes(accounts[i].Name)){
+        console.log(accounts[i].Name + "'s balance is " + accounts[i].Amount);
+        }
+    }
+  ListSpecificAccount.ListSpecific(showTransactions);
 } else {
-  console.log(`Sorry, I didn't quite catch that - please try again and enter 'List All'`);
+  console.log(`Sorry, I didn't quite catch that - please try again and enter 'List All' or 'List Account'.`);
 }
